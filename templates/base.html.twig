@@ -53,29 +53,29 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
               <div class="navbar-nav mr-auto">
                 <a href="{{ path('app_default') }}" class="nav-item nav-link active">الاستقبال</a>
-                <a href="about.html" class="nav-item nav-link">مستجدات</a>
+                <a href="{{ path('app_news') }}" class="nav-item nav-link">مستجدات</a>
                 <div class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">الإطار القانوني</a>
                   <div class="dropdown-menu">
-                    <a href="blog.html" class="dropdown-item">تجارب نموذجية</a>
-                    <a href="single.html" class="dropdown-item">المشترى العمومي</a>
+                    <a href="{{ path('app_juridique') }}" class="dropdown-item">تجارب نموذجية</a>
+                    <a href="{{ path('app_juridique') }}" class="dropdown-item">المشترى العمومي</a>
                   </div>
                 </div>
                 <div class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">إدارة المشاريع</a>
                   <div class="dropdown-menu">
-                    <a href="blog.html" class="dropdown-item">إدارة المخاطر</a>
-                    <a href="single.html" class="dropdown-item">إدارة الوقت</a>
-                    <a href="single.html" class="dropdown-item">استخدام التكنولوجيا الحديثة</a>
+                    <a href="{{ path('app_administrate') }}" class="dropdown-item">إدارة المخاطر</a>
+                    <a href="{{ path('app_administrate') }}" class="dropdown-item">إدارة الوقت</a>
+                    <a href="{{ path('app_administrate') }}" class="dropdown-item">استخدام التكنولوجيا الحديثة</a>
                   </div>
                 </div>
-                <a href="service.html" class="nav-item nav-link">فضاء المواطن</a>
+                <a href="{{ path('app_espace') }}" class="nav-item nav-link">فضاء المواطن</a>
                 <a href="{{ path('app_suivit_index') }}" class="nav-item nav-link">متابعة تنفيذ الصفقات العمومية</a>
 
-                <a href="contact.html" class="nav-item nav-link">اتصل بنا</a>
+                <a href="{{ path('app_contacte') }}" class="nav-item nav-link">اتصل بنا</a>
               </div>
               <div class="ml-auto">
-                <a class="btn" href="#">Get A Quote</a>
+                <a class="btn" href="#"></a>
               </div>
             </div>
           </nav>

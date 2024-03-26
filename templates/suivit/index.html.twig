@@ -60,7 +60,29 @@
 
 {% block javascripts %}
   <script>
-   document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
+      var natureFields = document.querySelectorAll('input[name="suivit_filter[nature]"]')
+      var sujetField = document.getElementById('{{ form.sujet.vars.id }}')
+    
+      natureFields.forEach(function (natureField) {
+        natureField.addEventListener('click', function () {
+          var natureId = natureField.value
+          fetch('/suivit/get-sujets?natureId=' + natureId)
+            .then((response) => response.json())
+            .then((data) => {
+              sujetField.innerHTML = '' // Efface les options précédentes
+              data.forEach(function (sujetData) {
+                var option = document.createElement('option')
+                option.value = sujetData.sujet // Utilisez le nom du sujet comme valeur
+                option.textContent = sujetData.sujet // Affichez le nom du sujet
+                sujetField.appendChild(option)
+              })
+            })
+        })
+      })
+    })
+    /*
+       document.addEventListener('DOMContentLoaded', function () {
     var natureFields = document.querySelectorAll('input[name="suivit_filter[nature]"]');
     var sujetField = document.getElementById('{{ form.sujet.vars.id }}');
 
@@ -87,5 +109,6 @@
     });
 });
 
+    */
   </script>
 {% endblock %}

@@ -26,7 +26,7 @@ class SuivitFilterType extends AbstractType
                 'required' => false, // Facultatif selon vos besoins
             ])
             ->add('sujet', ChoiceType::class, [
-                'label' => 'Sujet',
+                'label' => 'موضوع الصفقة',
                 'choices' => [], // Les choix seront mis à jour dynamiquement
                 'required' => false, // Facultatif selon vos besoins
             ]);
