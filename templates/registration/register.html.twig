@@ -1,21 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}
+  Register
+{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+  <!-- Page Header Start -->
+  <div class="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2>أنشأه حساب</h2>
+        </div>
+        <div class="col-12">
+          {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Header End -->
 
-    <h1>Register</h1>
+  <!-- Contact Start -->
+  <div class="contact wow fadeInUp">
+    <div class="container">
+      <div class="section-header text-center">
+        <p>Get In Touch</p>
+        <h2>For Any Query</h2>
+      </div>
+      <div class="row">
+        
+        <div class="col-md-6">
+          <div class="contact-form">
+            <div id="success"></div>
+            {# } <form name="sentMessage" id="contactForm" novalidate="novalidate"> #}
+            {{ form_start(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+            <div class="control-group">
+              {{ form_row(registrationForm.username) }}
+              {# <input type="text" class="form-control" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" /> #}
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+              {# <input type="email" class="form-control" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" /> #}
+              {{ form_row(registrationForm.plainPassword, { label: 'Password' }) }} <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+              {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+              <p class="help-block text-danger"></p>
+            </div>
+           
+            <div>
+              <button class="btn" type="submit" id="sendMessageButton">أنشأه</button>
+            </div>
+            {{ form_end(registrationForm) }}
+
+            {# } </form> #}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Contact End -->
 {% endblock %}

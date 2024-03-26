@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Suivit{% endblock %}
+
+{% block body %}
+    <h1>Suivit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ suivit.id }}</td>
+            </tr>
+            <tr>
+                <th>Nature</th>
+                <td>{{ suivit.nature }}</td>
+            </tr>
+            <tr>
+                <th>Sujet</th>
+                <td>{{ suivit.sujet }}</td>
+            </tr>
+            <tr>
+                <th>Cout</th>
+                <td>{{ suivit.cout }}</td>
+            </tr>
+            <tr>
+                <th>Proprietaire</th>
+                <td>{{ suivit.proprietaire }}</td>
+            </tr>
+            <tr>
+                <th>Debut</th>
+                <td>{{ suivit.debut ? suivit.debut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Fin</th>
+                <td>{{ suivit.fin ? suivit.fin|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>JourDeRetard</th>
+                <td>{{ suivit.jourDeRetard }}</td>
+            </tr>
+            <tr>
+                <th>CauseRetard</th>
+                <td>{{ suivit.causeRetard }}</td>
+            </tr>
+            <tr>
+                <th>DateCauseResiliation</th>
+                <td>{{ suivit.dateCauseResiliation }}</td>
+            </tr>
+            <tr>
+                <th>DateValidationFinal</th>
+                <td>{{ suivit.dateValidationFinal ? suivit.dateValidationFinal|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_suivit_index') }}">back to list</a>
+
+    <a href="{{ path('app_suivit_edit', {'id': suivit.id}) }}">edit</a>
+
+    {{ include('suivit/_delete_form.html.twig') }}
+{% endblock %}

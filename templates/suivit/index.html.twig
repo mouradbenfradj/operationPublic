@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Suivit index
+{% endblock %}
+
+{% block body %}
+  <h1>Suivit index</h1>
+  {% if suivits is not defined %}
+    {{ form_start(form) }}
+    {{ form_row(form.nature) }}
+    <button type="submit">Filtrer</button>
+    {{ form_end(form) }}
+  {% else %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nature</th>
+          <th>Sujet</th>
+          <th>Cout</th>
+          <th>Proprietaire</th>
+          <th>Debut</th>
+          <th>Fin</th>
+          <th>JourDeRetard</th>
+          <th>CauseRetard</th>
+          <th>DateCauseResiliation</th>
+          <th>DateValidationFinal</th>
+          <th>actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for suivit in suivits %}
+          <tr>
+            <td>{{ suivit.id }}</td>
+            <td>{{ suivit.nature }}</td>
+            <td>{{ suivit.sujet }}</td>
+            <td>{{ suivit.cout }}</td>
+            <td>{{ suivit.proprietaire }}</td>
+            <td>{{ suivit.debut ? suivit.debut|date('Y-m-d') : '' }}</td>
+            <td>{{ suivit.fin ? suivit.fin|date('Y-m-d') : '' }}</td>
+            <td>{{ suivit.jourDeRetard }}</td>
+            <td>{{ suivit.causeRetard }}</td>
+            <td>{{ suivit.dateCauseResiliation }}</td>
+            <td>{{ suivit.dateValidationFinal ? suivit.dateValidationFinal|date('Y-m-d') : '' }}</td>
+            <td>
+              <a href="{{ path('app_suivit_show', { id: suivit.id }) }}">show</a>
+              <a href="{{ path('app_suivit_edit', { id: suivit.id }) }}">edit</a>
+            </td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="12">no records found</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+  <script>
+   document.addEventListener('DOMContentLoaded', function () {
+    var natureFields = document.querySelectorAll('input[name="suivit_filter[nature]"]');
+    var sujetField = document.getElementById('{{ form.sujet.vars.id }}');
+
+    natureFields.forEach(function (natureField) {
+        natureField.addEventListener('click', function () {
+            var natureId = natureField.value;
+            fetch('/suivit/get-sujets?natureId=' + natureId)
+                .then(response => response.json())
+                .then(data => {
+                    sujetField.innerHTML = ''; // Efface les options précédentes
+                    var sujetSet = new Set(); // Utilise un ensemble pour stocker les sujets uniques
+                    data.forEach(function (sujetData) {
+                        // Vérifie si le sujet est déjà présent
+                        if (!sujetSet.has(sujetData.sujet)) {
+                            var option = document.createElement('option');
+                            option.value = sujetData.sujet; // Utilisez le nom du sujet comme valeur
+                            option.textContent = sujetData.sujet; // Affichez le nom du sujet
+                            sujetField.appendChild(option);
+                            sujetSet.add(sujetData.sujet); // Ajoute le sujet à l'ensemble
+                        }
+                    });
+                });
+        });
+    });
+});
+
+  </script>
+{% endblock %}
