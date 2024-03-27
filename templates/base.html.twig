@@ -53,17 +53,17 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
               <div class="navbar-nav mr-auto">
                 <a href="{{ path('app_default') }}" class="nav-item nav-link active">الاستقبال</a>
-                <a href="{{ path('app_news') }}" class="nav-item nav-link">مستجدات</a>
                 <div class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">الإطار القانوني</a>
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">مستجدات</a>
                   <div class="dropdown-menu">
+                    <a href="{{ path('app_juridique') }}" class="dropdown-item">الإطار القانوني</a>
                     <a href="{{ path('app_essai') }}" class="dropdown-item">تجارب نموذجية</a>
-                    <a href="{{ path('app_achat') }}" class="dropdown-item">المشترى العمومي</a>
                   </div>
                 </div>
                 <div class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">إدارة المشاريع</a>
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">المشترى العمومي</a>
                   <div class="dropdown-menu">
+                    <a href="{{ path('app_administrate') }}" class="dropdown-item">إدارة المشاريع</a>
                     <a href="{{ path('app_danger') }}" class="dropdown-item">إدارة المخاطر</a>
                     <a href="{{ path('app_temps') }}" class="dropdown-item">إدارة الوقت</a>
                     <a href="{{ path('app_technologie') }}" class="dropdown-item">استخدام التكنولوجيا الحديثة</a>
