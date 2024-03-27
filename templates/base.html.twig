@@ -63,10 +63,14 @@
                 <div class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">المشترى العمومي</a>
                   <div class="dropdown-menu">
-                    <a href="{{ path('app_administrate') }}" class="dropdown-item">إدارة المشاريع</a>
-                    <a href="{{ path('app_danger') }}" class="dropdown-item">إدارة المخاطر</a>
-                    <a href="{{ path('app_temps') }}" class="dropdown-item">إدارة الوقت</a>
-                    <a href="{{ path('app_technologie') }}" class="dropdown-item">استخدام التكنولوجيا الحديثة</a>
+                    {% if app.user %}
+                      <a href="{{ path('app_administrate') }}" class="dropdown-item">إدارة المشاريع</a>
+                      <a href="{{ path('app_danger') }}" class="dropdown-item">إدارة المخاطر</a>
+                      <a href="{{ path('app_temps') }}" class="dropdown-item">إدارة الوقت</a>
+                      <a href="{{ path('app_technologie') }}" class="dropdown-item">استخدام التكنولوجيا الحديثة</a>
+                    {% else %}
+                      <a href="{{ path('app_login') }}" class="dropdown-item">تسجيل الدخول</a>
+                    {% endif %}
                   </div>
                 </div>
                 <a href="{{ path('app_espace') }}" class="nav-item nav-link">فضاء المواطن</a>
