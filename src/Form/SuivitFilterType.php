@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Avis;
 use App\Entity\Suivit;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class SuivitFilterType extends AbstractType
 {
@@ -60,7 +61,9 @@ class SuivitFilterType extends AbstractType
                 'attr' => [
                     'style' => 'display:none',
                 ],
-            ]);
+            ])->add('submit', SubmitType::class, [
+                'label' => 'Soumettre', // Texte du bouton
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver)
