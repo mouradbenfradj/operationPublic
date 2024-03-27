@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Avis;
 use App\Entity\Suivit;
 use App\Form\SuivitFilterType;
 use App\Form\SuivitType;
@@ -22,8 +23,10 @@ class SuivitController extends AbstractController
      */
     public function index(Request $request, SuivitRepository $suivitRepository): Response
     {
-        $suivit = new Suivit();
-        $form = $this->createForm(SuivitFilterType::class, $suivit);
+        $suivit= new Suivit();
+        $form = $this->createForm(SuivitFilterType::class, null, [
+            'data_class' => Avis::class,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

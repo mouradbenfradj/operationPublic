@@ -13,7 +13,7 @@ security:
                 users:
                     admin:
                         password: 'admin'
-                        roles: 'ROLE_SUPER_ADMIN'
+                        roles: 'ROLE_ADMIN'
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
@@ -32,6 +32,8 @@ security:
             logout:
                 path: app_logout
             # ...
+            switch_user:  true
+
             form_login:
                 # "app_login" is the name of the route created previously
                 login_path: app_login

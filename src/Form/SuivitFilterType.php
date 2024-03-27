@@ -5,8 +5,11 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Entity\Avis;
+use App\Entity\Suivit;
 
 class SuivitFilterType extends AbstractType
 {
@@ -21,21 +24,49 @@ class SuivitFilterType extends AbstractType
                     // Ajoutez d'autres options selon vos besoins
                 ],
                 'label' => 'طبيعة الصفقة',
-                'expanded' => true, // Afficher comme des boutons radio
-                'multiple' => false, // Ne pas autoriser la sélection multiple
-                'required' => false, // Facultatif selon vos besoins
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
             ])
             ->add('sujet', ChoiceType::class, [
                 'label' => 'موضوع الصفقة',
-                'choices' => [], // Les choix seront mis à jour dynamiquement
-                'required' => false, // Facultatif selon vos besoins
+                'choices' => [],
+                'required' => false,
+                // Ajoutez un écouteur d'événements pour modifier la visibilité des autres champs
+                'attr' => [
+                    'onchange' => 'toggleAvisFields(this)',
+                ],
+            ])
+            ->add('satisfaction', TextareaType::class, [
+                'label' => 'مستوى الرضا على تنفيذ المشروع',
+                'required' => false,
+                'mapped' => false, // Ne pas mapper ce champ à une propriété de l'entité Suivit
+                'attr' => [
+                    'style' => 'display:none', // Masquer ce champ par défaut
+                ],
+            ])
+            ->add('defauts', TextareaType::class, [
+                'label' => 'إبلاغ عن عيوب خلال تنفيذ المشروع',
+                'required' => false,
+                'mapped' => false,
+                'attr' => [
+                    'style' => 'display:none',
+                ],
+            ])
+            ->add('risques', TextareaType::class, [
+                'label' => 'الإعلان عن مخاطر أو تهديدات تواجه المشروع',
+                'required' => false,
+                'mapped' => false,
+                'attr' => [
+                    'style' => 'display:none',
+                ],
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // Configurez les options de base ici
+            'data_class' => Suivit::class,
         ]);
     }
 }

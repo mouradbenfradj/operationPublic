@@ -17,4 +17,22 @@ class JuridiqueController extends AbstractController
             'controller_name' => 'JuridiqueController',
         ]);
     }
+    /**
+     * @Route("/essai", name="app_essai")
+     */
+    public function essai(): Response
+    {
+        return $this->render('juridique/essai.html.twig', [
+            'controller_name' => 'JuridiqueController',
+        ]);
+    }
+    /**
+     * @Route("/achat", name="app_achat")
+     */
+    public function achat(): Response
+    {
+        return $this->render('juridique/achat.html.twig', [
+            'controller_name' => 'achatController',
+        ]);
+    }
 }
