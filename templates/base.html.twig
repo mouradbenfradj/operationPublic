@@ -52,20 +52,20 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
               <div class="navbar-nav mr-auto">
-                <a href="{{ path('app_default') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_default' %}active{% endif %}">الاستقبال</a>
+                <a href="{{ path('app_default') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_default' %}{% endif %}">الاستقبال</a>
                 {% if is_granted('ROLE_ADMIN') %}
-                  <a href="{{ path('admin') }}" class="nav-item nav-link {% if app.request.get('_route') == 'admin' %}active{% endif %}">إدارة</a>
+                  <a href="{{ path('admin') }}" class="nav-item nav-link {% if app.request.get('_route') == 'admin' %}{% endif %}">إدارة</a>
                 {% endif %}
 
                 <div class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle {% if app.request.get('_route') == 'app_juridique' or app.request.get('_route') == 'app_essai' %}active{% endif %}" data-toggle="dropdown">مستجدات</a>
+                  <a href="#" class="nav-link dropdown-toggle {% if app.request.get('_route') == 'app_juridique' or app.request.get('_route') == 'app_essai' %}{% endif %}" data-toggle="dropdown">مستجدات</a>
                   <div class="dropdown-menu">
                     <a href="{{ path('app_juridique') }}" class="dropdown-item">الإطار القانوني</a>
                     <a href="{{ path('app_essai') }}" class="dropdown-item">تجارب نموذجية</a>
                   </div>
                 </div>
                 <div class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle {% if app.request.get('_route') == 'app_administrate' or app.request.get('_route') == 'app_danger' or app.request.get('_route') == 'app_temps' or app.request.get('_route') == 'app_technologie' or app.request.get('_route') == 'app_login' %}active{% endif %}" data-toggle="dropdown">المشترى العمومي</a>
+                  <a href="#" class="nav-link dropdown-toggle {% if app.request.get('_route') == 'app_administrate' or app.request.get('_route') == 'app_danger' or app.request.get('_route') == 'app_temps' or app.request.get('_route') == 'app_technologie' or app.request.get('_route') == 'app_login' %}{% endif %}" data-toggle="dropdown">المشترى العمومي</a>
                   <div class="dropdown-menu">
                     {% if app.user %}
                       <a href="{{ path('app_administrate') }}" class="dropdown-item">إدارة المشاريع</a>
@@ -77,10 +77,10 @@
                     {% endif %}
                   </div>
                 </div>
-                <a href="{{ path('app_espace') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_espace' %}active{% endif %}">فضاء المواطن</a>
-                <a href="{{ path('app_suivit_index') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_suivit_index' %}active{% endif %}">متابعة تنفيذ الصفقات العمومية</a>
+                <a href="{{ path('app_espace') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_espace' %}{% endif %}">فضاء المواطن</a>
+                <a href="{{ path('app_suivit_index') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_suivit_index' %}{% endif %}">متابعة تنفيذ الصفقات العمومية</a>
 
-                <a href="{{ path('app_contacte') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_contacte' %}active{% endif %}">اتصل بنا</a>
+                <a href="{{ path('app_contact_new') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_contact_new' %}{% endif %}">اتصل بنا</a>
               </div>
               <div class="ml-auto">
                 <a class="btn" href="#"></a>
@@ -90,9 +90,13 @@
         </div>
       </div>
       <!-- Nav Bar End -->
-
+      {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endfor %}
       {% block body %}
-
+        {% for message in app.flashes('error') %}
+          <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
       {% endblock %}
 
       {% block javascripts %}

@@ -1,6 +1,9 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
-
+    globals:
+        Location: '123 Street, New York, USA'
+        Phone: '+012 345 67890'
+        Email: 'info@example.com'
 when@test:
     twig:
         strict_variables: true

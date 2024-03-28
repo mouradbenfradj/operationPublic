@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <!-- Page Header Start -->
+  <div class="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2>اتصل بنا</h2>
+        </div>
+
+        <div class="col-12">
+          <a href="">الاستقبال</a>
+          <a href="">اتصل بنا</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Header End -->
+
+  <!-- Contact Start -->
+  <div class="contact wow fadeInUp">
+    <div class="container">
+      <div class="section-header text-center">
+        <p>Get In Touch</p>
+        <h2>For Any Query</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="flaticon-address"></i>
+              <div class="contact-text">
+                <h2>{{ 'Location'|trans }}</h2>
+                <p>{{ Location|trans }}</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="flaticon-call"></i>
+              <div class="contact-text">
+                <h2>{{ 'Phone'|trans }}</h2>
+                <p>{{ Phone|trans }}</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="flaticon-send-mail"></i>
+              <div class="contact-text">
+                <h2>{{ 'Email'|trans }}</h2>
+                <p>{{ Email|trans }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="contact-form">
+            <div id="success"></div>
+
+            {{ include('contact/_form.html.twig') }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Contact End -->
+{% endblock %}

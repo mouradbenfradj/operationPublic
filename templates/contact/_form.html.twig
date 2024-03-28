@@ -1,0 +1,23 @@
+<form name="sentMessage" id="contactForm" novalidate="novalidate" method="POST">
+    {{ form_start(form) }}
+    <div class="control-group">
+        {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Your Name', 'required': 'required'}}) }}
+        {{ form_errors(form.nom) }}
+    </div>
+    <div class="control-group">
+        {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Your Email', 'required': 'required'}}) }}
+        {{ form_errors(form.email) }}
+    </div>
+    <div class="control-group">
+        {{ form_widget(form.sujet, {'attr': {'class': 'form-control', 'placeholder': 'Subject', 'required': 'required'}}) }}
+        {{ form_errors(form.sujet) }}
+    </div>
+    <div class="control-group">
+        {{ form_widget(form.message, {'attr': {'class': 'form-control', 'placeholder': 'Message', 'required': 'required'}}) }}
+        {{ form_errors(form.message) }}
+    </div>
+    <div>
+        <button class="btn" type="submit" id="sendMessageButton">Send Message</button>
+    </div>
+    {{ form_end(form) }}
+</form>
