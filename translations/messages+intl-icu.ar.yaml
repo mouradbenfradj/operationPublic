@@ -6,7 +6,7 @@
 'Happy Clients': 'عملاء سعداء'
 'Completed Projects': 'المشاريع المكتملة'
 'Running Projects': 'المشاريع الجارية'
-'Our Services': 'خدماتنا'
+'Our Services': خدماتنا
 'We Provide Services': 'نحن نقدم الخدمات'
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.': 'لوريم إيبسوم دولور سيت أميت، كونسيكتيتور أديبيسينغ إيليت. فاسيليس نيك بريتيم أورناري فيليت نون فولبوتاتي. أليكوام ميتوس تورتور، أوكتور إيد غرافيدا كونديمينتوم، فيفيرا كويس سيم'
 'Building Construction': 'بناء المباني'
@@ -14,8 +14,8 @@
 'Architecture Design': 'تصميم الهندسة المعمارية'
 'Interior Design': 'تصميم الديكور الداخلي'
 'Fixing & Support': 'إصلاح ودعم'
-Painting: 'الرسم'
-'Our Team': 'فريقنا'
+Painting: الرسم
+'Our Team': فريقنا
 'Meet Our Engineer': 'تعرف على مهندسنا'
 'Adam Phillips': 'آدم فيليبس'
 'CEO & Founder': 'الرئيس التنفيذي والمؤسس'
@@ -24,34 +24,42 @@ Painting: 'الرسم'
 'Jhon Doe': 'جون دو'
 'Interior Designer': 'مصمم داخلي'
 'Josh Dunn': 'جوش دن'
-Painter: 'رسام'
+Painter: رسام
 'Frequently Asked Question': 'الأسئلة المتكررة'
 'You May Ask': 'يمكنك أن تسأل'
 'Lorem ipsum dolor sit': 'لوريم إيبسوم دولور سيت'
 'Customer Name': 'اسم العميل'
-profession: 'المهنة'
+profession: المهنة
 'Latest Blog': 'أحدث المدونات'
 'Latest From Our Blog': 'آخر ما في مدونتنا'
-Admin: 'المشرف'
-Construction: 'البناء'
+Admin: المشرف
+Construction: البناء
 'Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor': 'لوريم إيبسوم دولور سيت أميت، كونسيكتيتور أديبيسينغ إيليت. فاسيليس نيك بريتيم أورناري فيليت نون فولبوتاتي. أليكوام ميتوس تورتور'
-By: 'بواسطة'
-In: 'في'
+By: بواسطة
+In: في
 'Office Contact': 'اتصال المكتب'
 '123 Street, New York, USA': '١٢٣ شارع، نيويورك، الولايات المتحدة'
 'Services Areas': 'مجالات الخدمات'
 'Useful Pages': 'صفحات مفيدة'
 'About Us': 'معلومات عنا'
 'Contact Us': 'اتصل بنا'
-Projects: 'مشاريع'
-Testimonial: 'شهادة'
+Projects: مشاريع
+Testimonial: شهادة
 Newsletter: 'النشرة الإخبارية'
 'amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu': 'إيليت. فاسيليس نيك بريتيم أورناري فيليت نون فولبوتاتي'
-Submit: 'إرسال'
+Submit: إرسال
 'Terms of use': 'شروط الاستخدام'
 'Privacy policy': 'سياسة الخصوصية'
 Cookies: 'ملفات تعريف الارتباط'
-Help: 'مساعدة'
+Help: مساعدة
 FQAs: 'الأسئلة الشائعة'
 'Your Site Name': 'اسم موقعك'
 ', All Right Reserved.': ', كل الحقوق محفوظة'
+Location: الموقع
+Phone: الهاتف
+Email: البريد الإلكتروني
+'Your Name': اسمك
+'Your Email': 'بريدك الالكتروني'
+'Subject': موضوع
+'Message': رسالة
+'Send Message': 'إرسال رسالة'
