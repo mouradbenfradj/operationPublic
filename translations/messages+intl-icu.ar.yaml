@@ -57,9 +57,21 @@ FQAs: 'الأسئلة الشائعة'
 ', All Right Reserved.': ', كل الحقوق محفوظة'
 Location: الموقع
 Phone: الهاتف
-Email: البريد الإلكتروني
+Email: 'البريد الإلكتروني'
 'Your Name': اسمك
 'Your Email': 'بريدك الالكتروني'
-'Subject': موضوع
-'Message': رسالة
+Subject: موضوع
+Message: رسالة
 'Send Message': 'إرسال رسالة'
+Nature: 'طبيعة الصفقة'
+Sujet: 'موضوع الصفقة'
+Cout: 'مبلغ الصفقة بالدينار'
+Proprietaire: 'صاحب الصفقة'
+Debut: 'تاريخ بداية الإنجاز'
+Fin: 'تاريخ نهاية الإنجاز'
+JourDeRetard: 'عدد أيام التأخير'
+CauseRetard: 'ذكر أسباب التأخير'
+DateCauseResiliation: 'ذكر تاريخ وأسباب الفسخ'
+DateValidationFinal: 'تاريخ المصادقة على ملف الختم النهائي'
+actions: الإجراءات
+show: إظهار

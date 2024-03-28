@@ -23,22 +23,17 @@ class SuivitController extends AbstractController
      */
     public function index(Request $request, SuivitRepository $suivitRepository): Response
     {
-        $suivit= new Suivit();
-        $form = $this->createForm(SuivitFilterType::class, null, [
-            'data_class' => Avis::class,
-        ]);
+        $suivit = new Suivit();
+        $form = $this->createForm(SuivitType::class, $suivit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $suivitRepository->add($suivit, true);
 
-            return $this->render('suivit/index.html.twig', [
-                'suivits' => $suivitRepository->findAll(),
-                'form' => $form->createView(),
-            ]);
+            return $this->redirectToRoute('app_suivit_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('suivit/index.html.twig', [
-            'suivit' => $suivit,
+            'suivits' => $suivitRepository->findAll(),
             'form' => $form,
         ]);
     }
