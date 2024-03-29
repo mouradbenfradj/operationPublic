@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Avis;
 use App\Entity\Suivit;
+use App\Form\SearchSuivitType;
 use App\Form\SuivitFilterType;
 use App\Form\SuivitType;
 use App\Repository\SuivitRepository;
@@ -19,18 +20,36 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class SuivitController extends AbstractController
 {
     /**
-     * @Route("/", name="app_suivit_index", methods={"GET"})
+     * @Route("/", name="app_suivit_index", methods={"GET", "POST"})
      */
     public function index(Request $request, SuivitRepository $suivitRepository): Response
     {
-        $suivit = new Suivit();
-        $form = $this->createForm(SuivitType::class, $suivit);
+        $form = $this->createForm(SearchSuivitType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $suivitRepository->add($suivit, true);
+            $formData = $request->request->get('search_suivit');
+            $criteria = [];
 
-            return $this->redirectToRoute('app_suivit_index', [], Response::HTTP_SEE_OTHER);
+            // Ajouter tous les champs au critère de recherche, y compris ceux qui sont null
+            $criteria['nature'] = $formData['nature'] ?? null;
+            $criteria['sujet'] = $formData['sujet'] ?? null;
+            $criteria['cout'] = $formData['cout'] ?? null;
+            $criteria['proprietaire'] = $formData['proprietaire'] ?? null;
+            $criteria['debut'] = $formData['debut'] ?? null;
+            $criteria['fin'] = $formData['fin'] ?? null;
+            $criteria['jourDeRetard'] = $formData['jourDeRetard'] ?? null;
+            $criteria['causeRetard'] = $formData['causeRetard'] ?? null;
+            $criteria['dateCauseResiliation'] = $formData['dateCauseResiliation'] ?? null;
+            $criteria['dateValidationFinal'] = $formData['dateValidationFinal'] ?? null;
+            // Appeler la méthode de recherche du repository
+            $filteredSuivits = $suivitRepository->search($criteria);
+    
+
+            return $this->renderForm('suivit/index.html.twig', [
+                'suivits' => $filteredSuivits,
+                'form' => $form,
+            ]);
         }
         return $this->renderForm('suivit/index.html.twig', [
             'suivits' => $suivitRepository->findAll(),
