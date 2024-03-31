@@ -16,4 +16,41 @@
     </div>
   </div>
   <!-- Page Header End -->
+  
+  <!-- Single Post Start -->
+  <div class="single">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="comment-form wow fadeInUp">
+            <h2>الإطار القانوني</h2>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>titre</th>
+                  <th>fichier</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for document in documents %}
+                  <tr>
+                    <td>{{ document.titre }}</td>
+                    <td>
+                      <a href="{{ asset('/uploads/pdf/' ~ document.fileName ) }}">{{ document.fileName }}</a>
+                    </td>
+                  </tr>
+                {% else %}
+                  <tr>
+                    <td colspan="6">no records found</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Single Post End -->
 {% endblock %}

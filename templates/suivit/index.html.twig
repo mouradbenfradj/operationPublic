@@ -35,47 +35,47 @@
               <tbody>
                 <tr>
                   <th>{{ 'Nature'|trans }}</th>
-                  <td>{{ form_widget(form.nature, {'required': false}) }}</td>
+                  <td>{{ form_widget(form.nature, { required: false }) }}</td>
                 </tr>
                 <tr>
                   <th>{{ 'Sujet'|trans }}</th>
-                  <td>{{ form_widget(form.sujet, {'required': false}) }}</td>
+                  <td>{{ form_widget(form.sujet, { required: false }) }}</td>
                 </tr>
                 <tr>
                   <th>{{ 'Cout'|trans }}</th>
-                  <td>{{ form_widget(form.cout, {'required': false}) }}</td>
+                  <td>{{ form_widget(form.cout, { required: false }) }}</td>
                 </tr>
                 <tr>
                   <th>{{ 'Proprietaire'|trans }}</th>
-                  <td>{{ form_widget(form.proprietaire, {'required': false}) }}</td>
+                  <td>{{ form_widget(form.proprietaire, { required: false }) }}</td>
                 </tr>
                 <tr>
                   <th>{{ 'Debut'|trans }}</th>
-                  <td>{{ form_widget(form.debut, {'required': false}) }}</td>
+                  <td>{{ form_widget(form.debut, { required: false }) }}</td>
                 </tr>
                 <tr>
                   <th>{{ 'Fin'|trans }}</th>
-                  <td>{{ form_widget(form.fin, {'required': false}) }}</td>
+                  <td>{{ form_widget(form.fin, { required: false }) }}</td>
                 </tr>
                 <tr>
                   <th>{{ 'JourDeRetard'|trans }}</th>
-                  <td>{{ form_widget(form.jourDeRetard, {'required': false}) }}</td>
+                  <td>{{ form_widget(form.jourDeRetard, { required: false }) }}</td>
                 </tr>
                 <tr>
                   <th>{{ 'CauseRetard'|trans }}</th>
-                  <td>{{ form_widget(form.causeRetard, {'required': false}) }}</td>
+                  <td>{{ form_widget(form.causeRetard, { required: false }) }}</td>
                 </tr>
                 <tr>
                   <th>{{ 'DateCauseResiliation'|trans }}</th>
-                  <td>{{ form_widget(form.dateCauseResiliation, {'required': false}) }}</td>
+                  <td>{{ form_widget(form.dateCauseResiliation, { required: false }) }}</td>
                 </tr>
                 <tr>
                   <th>{{ 'DateValidationFinal'|trans }}</th>
-                  <td>{{ form_widget(form.dateValidationFinal, {'required': false}) }}</td>
+                  <td>{{ form_widget(form.dateValidationFinal, { required: false }) }}</td>
                 </tr>
               </tbody>
             </table>
-                <button class="btn">{{ button_label|default('filtrer', {'required': false}) }}</button>
+            <button class="btn">{{ button_label|default('filtrer', { required: false }) }}</button>
 
             {{ form_end(form) }}
 

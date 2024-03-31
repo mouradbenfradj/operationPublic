@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Contact;
+use App\Entity\Document;
 use App\Entity\Suivit;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -32,6 +33,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Suivit', 'fas fa-list', Suivit::class);
         yield MenuItem::linkToCrud('Contacte', 'fas fa-list', Contact::class);
+        yield MenuItem::linkToCrud('Documents', 'fas fa-list', Document::class);
         yield MenuItem::linkToCrud('Utilisateur', 'fas fa-list', User::class);
     }
 }
