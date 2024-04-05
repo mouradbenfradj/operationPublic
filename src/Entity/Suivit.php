@@ -18,7 +18,10 @@ class Suivit
      * @ORM\Column(type="integer")
      */
     private $id;
-
+    public function __toString()
+    {
+        return $this->sujet;
+    }
     /**
      * @ORM\Column(type="integer")
      */

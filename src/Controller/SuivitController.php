@@ -62,7 +62,7 @@ class SuivitController extends AbstractController
      */
     public function getSujets(Request $request, SuivitRepository $suivitRepository)
     {
-        $natureId = $request->query->get('natureId');
+        $natureId = $request->query->get('nature');
         $sujets = $suivitRepository->findByNature($natureId); // Implémentez cette méthode dans votre repository
 
         $formattedSujets = [];

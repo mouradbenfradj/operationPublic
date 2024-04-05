@@ -1,69 +1,63 @@
 <?php
-// src/Form/SuivitFilterType.php
 
 namespace App\Form;
 
+use App\Entity\Suivit;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Entity\Avis;
-use App\Entity\Suivit;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\SuivitRepository;
 
 class SuivitFilterType extends AbstractType
 {
+    private $entityManager;
+    private $suivitRepository;
+
+    public function __construct(EntityManagerInterface $entityManager, SuivitRepository $suivitRepository)
+    {
+        $this->entityManager = $entityManager;
+        $this->suivitRepository = $suivitRepository;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $natureChoices = $this->getUniqueNatureValues();
+
         $builder
-            ->add('nature', ChoiceType::class, [
-                'choices' => [
-                    'أشغال' => 1,
-                    'دراسة' => 2,
-                    'تزود بخدمات' => 3,
-                    // Ajoutez d'autres options selon vos besoins
-                ],
-                'label' => 'طبيعة الصفقة',
+            ->add('operation', ChoiceType::class, [
+                'choices' => array_flip($natureChoices),
+                'label' => 'العملية',
+                'required' => false,
                 'expanded' => true,
                 'multiple' => false,
-                'required' => false,
+                'mapped' => false,
             ])
-            ->add('sujet', ChoiceType::class, [
-                'label' => 'موضوع الصفقة',
-                'choices' => [],
-                'required' => false,
-                // Ajoutez un écouteur d'événements pour modifier la visibilité des autres champs
-                'attr' => [
-                    'onchange' => 'toggleAvisFields(this)',
+            ->add('note', ChoiceType::class, [
+                'choices' => [
+                    '5 - Excellent' => 5,
+                    '4 - Bon' => 4,
+                    '3 - Moyen' => 3,
+                    '2 - Mauvais' => 2,
+                    '1 - Très mauvais' => 1,
                 ],
+                'label' => 'تقييم التنفيذ',
+                'required' => true,
             ])
-            ->add('satisfaction', TextareaType::class, [
-                'label' => 'مستوى الرضا على تنفيذ المشروع',
-                'required' => false,
-                'mapped' => false, // Ne pas mapper ce champ à une propriété de l'entité Suivit
-                'attr' => [
-                    'style' => 'display:none', // Masquer ce champ par défaut
-                ],
-            ])
-            ->add('defauts', TextareaType::class, [
+            ->add('defaux', TextareaType::class, [
                 'label' => 'إبلاغ عن عيوب خلال تنفيذ المشروع',
                 'required' => false,
-                'mapped' => false,
-                'attr' => [
-                    'style' => 'display:none',
-                ],
             ])
-            ->add('risques', TextareaType::class, [
+            ->add('danger', TextareaType::class, [
                 'label' => 'الإعلان عن مخاطر أو تهديدات تواجه المشروع',
                 'required' => false,
-                'mapped' => false,
-                'attr' => [
-                    'style' => 'display:none',
-                ],
-            ])->add('submit', SubmitType::class, [
-                'label' => 'Soumettre', // Texte du bouton
-            ]);;
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Soumettre',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -72,4 +66,31 @@ class SuivitFilterType extends AbstractType
             'data_class' => Suivit::class,
         ]);
     }
+
+    private function getUniqueNatureValues()
+    {
+        $results = $this->suivitRepository->findDistinctNatureValues();
+
+        $uniqueNatureValues = [];
+        foreach ($results as $result) {
+            $uniqueNatureValues[$result['nature']] = $this->getNatureLabel($result['nature']);
+        }
+
+        return $uniqueNatureValues;
+    }
+
+    private function getNatureLabel($nature)
+    {
+        switch ($nature) {
+            case 1:
+                return 'أشغال';
+            case 2:
+                return 'دراسة';
+            case 3:
+                return 'تزود بخدمات';
+            default:
+                return 'Inconnu';
+        }
+    }
+    
 }

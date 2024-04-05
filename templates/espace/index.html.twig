@@ -1,119 +1,139 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  <!-- Page Header Start -->
-  <div class="page-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h2>فضاء المواطن</h2>
-        </div>
-        <div class="col-12">
-          <a href="">الاستقبال</a>
-          <a href="">فضاء المواطن</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Page Header End -->
+	<!-- Page Header Start -->
+	<div class="page-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h2>فضاء المواطن</h2>
+				</div>
+				<div class="col-12">
+					<a href="">الاستقبال</a>
+					<a href="">فضاء المواطن</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Page Header End -->
 
-  <!-- Single Post Start -->
-  <div class="single">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="comment-form wow fadeInUp">
-            <h2>فضاء المواطن</h2>
-            {% if suivits is not defined %}
-              {{ form_start(form) }}
-              <div class="form-group">{{ form_label(form.nature, 'طبيعة الصفقة') }}
-                {{ form_widget(form.nature, { attr: { class: 'form-control', onchange: 'loadSujets(this)' } }) }}</div>
-              <div class="form-group" id="sujetField" style="display: none;">{{ form_label(form.sujet, 'موضوع الصفقة') }}
-                {{ form_widget(form.sujet, { attr: { class: 'form-control' } }) }}</div>
-              <!-- Ajoutez d'autres champs ici -->
-              <div class="form-group">{{ form_label(form.satisfaction, 'مستوى الرضا على تنفيذ المشروع') }}
-                {{ form_widget(form.satisfaction, { attr: { class: 'form-control' } }) }}</div>
-              <div class="form-group">{{ form_label(form.defauts, 'إبلاغ عن عيوب خلال تنفيذ المشروع') }}
-                {{ form_widget(form.defauts, { attr: { class: 'form-control' } }) }}</div>
-              <div class="form-group">{{ form_label(form.risques, 'الإعلان عن مخاطر أو تهديدات تواجه المشروع') }}
-                {{ form_widget(form.risques, { attr: { class: 'form-control' } }) }}</div>
-              <div class="form-group">{{ form_row(form.submit, { attr: { class: 'btn btn-primary' } }) }}</div>
-              {{ form_end(form) }}
+	<!-- Single Post Start -->
+	<div class="single">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="comment-form wow fadeInUp">
+						<h2>فضاء المواطن</h2>
 
-              {# </form> #}
-            {% else %}
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>Nature</th>
-                    <th>Sujet</th>
-                    <th>Cout</th>
-                    <th>Proprietaire</th>
-                    <th>Debut</th>
-                    <th>Fin</th>
-                    <th>JourDeRetard</th>
-                    <th>CauseRetard</th>
-                    <th>DateCauseResiliation</th>
-                    <th>DateValidationFinal</th>
-                    <th>actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for suivit in suivits %}
-                    <tr>
-                      <td>{{ suivit.id }}</td>
-                      <td>{{ suivit.nature }}</td>
-                      <td>{{ suivit.sujet }}</td>
-                      <td>{{ suivit.cout }}</td>
-                      <td>{{ suivit.proprietaire }}</td>
-                      <td>{{ suivit.debut ? suivit.debut|date('Y-m-d') : '' }}</td>
-                      <td>{{ suivit.fin ? suivit.fin|date('Y-m-d') : '' }}</td>
-                      <td>{{ suivit.jourDeRetard }}</td>
-                      <td>{{ suivit.causeRetard }}</td>
-                      <td>{{ suivit.dateCauseResiliation }}</td>
-                      <td>{{ suivit.dateValidationFinal ? suivit.dateValidationFinal|date('Y-m-d') : '' }}</td>
-                      <td></td>
-                    </tr>
-                  {% else %}
-                    <tr>
-                      <td colspan="12">no records found</td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Single Post End -->
-{% endblock %}
+						{% if suivits is not defined %}
 
-{% block javascripts %}
-  {{ parent() }}
-  <script>
-      function loadSujets(natureField) {
-    var selectedNature = natureField.value;
-    var sujetField = document.getElementById('{{ form.sujet.vars.id }}');
-    if (selectedNature !== '') {
-        fetch('/suivit/get-sujets?natureId=' + selectedNature)
-            .then((response) => response.json())
-            .then((data) => {
-                sujetField.innerHTML = ''; // Effacer les options précédentes
-                data.forEach(function (sujetData) {
-                    var option = document.createElement('option');
-                    option.value = sujetData.sujet;
-                    option.textContent = sujetData.sujet;
-                    sujetField.appendChild(option);
-                });
-                sujetField.closest('.form-group').style.display = 'block'; // Afficher le champ "Sujet"
-            });
-    } else {
-        sujetField.closest('.form-group').style.display = 'none'; // Masquer le champ "Sujet" s'il n'y a pas de nature sélectionnée
-        sujetField.innerHTML = ''; // Effacer les options du champ "Sujet"
-    }
-}
-  </script>
+							<table>
+								<tr>
+									<td>
+										{% for label, messages in app.flashes %}
+											{% for message in messages %}
+												<div class="flash-{{ label }}">
+													{{ message }}
+												</div>
+											{% endfor %}
+										{% endfor %}
+									</td>
+									<td></td>
+								</tr>
+								{{ form_start(form) }}
+								<tr>
+									<div class="form-group">{{ form_label(form.nature, 'طبيعة الصفقة') }}
+										{{ form_widget(form.nature, { attr: { class: 'form-control', id: 'suivit_filter_operation' } }) }}
+										{{ form_errors(form.nature) }}</div>
+								</tr>
+								<tr>
+									<div class="form-group">
+										<td>{{ form_label(form.avis.vars.prototype.operation, 'موضوع الصفقة') }}</td>
+										<td>
+											{{ form_widget(form.avis.vars.prototype.operation) }}
+											{{ form_errors(form.avis.vars.prototype.operation) }}</td>
+									</div>
+								</tr>
+								<tr>
+									<div class="form-group">
+										<td>{{ form_label(form.avis.vars.prototype.note) }}</td>
+										<td>
+											{{ form_widget(form.avis.vars.prototype.note) }}
+											{{ form_errors(form.avis.vars.prototype.note) }}</td>
+									</div>
+								</tr>
+								<tr>
+									<div class="form-group">
+										<td>{{ form_label(form.avis.vars.prototype.defaux) }}</td>
+										<td>
+											{{ form_widget(form.avis.vars.prototype.defaux) }}
+											{{ form_errors(form.avis.vars.prototype.defaux) }}</td>
+									</div>
+								</tr>
+								<tr>
+									<div class="form-group">
+										<td>{{ form_label(form.avis.vars.prototype.danger) }}</td>
+										<td>
+											{{ form_widget(form.avis.vars.prototype.danger) }}
+											{{ form_errors(form.avis.vars.prototype.danger) }}</td>
+									</div>
+								</tr>
+
+								<tr>
+									<td>
+										<div class="form-group">
+											<td>{{ form_row(form.submit, { attr: { class: 'btn btn-primary' } }) }}</td>
+										</div>
+									</td>
+								</tr>
+								{{ form_end(form) }}
+							</table>
+						{% else %}
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Nature</th>
+										<th>Sujet</th>
+										<th>Cout</th>
+										<th>Proprietaire</th>
+										<th>Debut</th>
+										<th>Fin</th>
+										<th>JourDeRetard</th>
+										<th>CauseRetard</th>
+										<th>DateCauseResiliation</th>
+										<th>DateValidationFinal</th>
+										<th>actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for suivit in suivits %}
+										<tr>
+											<td>{{ suivit.id }}</td>
+											<td>{{ suivit.nature }}</td>
+											<td>{{ suivit.sujet }}</td>
+											<td>{{ suivit.cout }}</td>
+											<td>{{ suivit.proprietaire }}</td>
+											<td>{{ suivit.debut ? suivit.debut|date('Y-m-d') : '' }}</td>
+											<td>{{ suivit.fin ? suivit.fin|date('Y-m-d') : '' }}</td>
+											<td>{{ suivit.jourDeRetard }}</td>
+											<td>{{ suivit.causeRetard }}</td>
+											<td>{{ suivit.dateCauseResiliation }}</td>
+											<td>{{ suivit.dateValidationFinal ? suivit.dateValidationFinal|date('Y-m-d') : '' }}</td>
+											<td></td>
+										</tr>
+									{% else %}
+										<tr>
+											<td colspan="12">no records found</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Single Post End -->
 {% endblock %}

@@ -21,6 +21,33 @@ class SuivitRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Suivit::class);
     }
+
+    public function add(Suivit $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+    public function findSujetsByNature($nature)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.nature = :nature')
+            ->setParameter('nature', $nature)
+            ->getQuery()
+            ->getResult();
+    }
+    
+    // Ajoutez cette méthode pour trouver les valeurs distinctes de la nature
+    public function findDistinctNatureValues()
+    {
+        return $this->createQueryBuilder('s')
+            ->select('DISTINCT s.nature')
+            ->getQuery()
+            ->getResult();
+    }
+    
     /**
      * Recherche de suivit en fonction de critères.
      *
@@ -93,14 +120,6 @@ class SuivitRepository extends ServiceEntityRepository
         }
 
         return $queryBuilder->getQuery()->getResult();
-    }
-    public function add(Suivit $entity, bool $flush = false): void
-    {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
     }
 
     public function remove(Suivit $entity, bool $flush = false): void
