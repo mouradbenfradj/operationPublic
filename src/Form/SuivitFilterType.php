@@ -38,11 +38,11 @@ class SuivitFilterType extends AbstractType
             ])
             ->add('note', ChoiceType::class, [
                 'choices' => [
-                    '5 - Excellent' => 5,
-                    '4 - Bon' => 4,
-                    '3 - Moyen' => 3,
-                    '2 - Mauvais' => 2,
-                    '1 - Très mauvais' => 1,
+                    '5 - ممتاز' => 5,
+                    '4 - جيد' => 4,
+                    '3 - متوسط' => 3,
+                    '2 - سيء' => 2,
+                    '1 - سيء جدا' => 1,
                 ],
                 'label' => 'تقييم التنفيذ',
                 'required' => true,

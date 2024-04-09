@@ -1,110 +1,121 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="utf-8" />
-    <title>
-      {% block title %}
-        متابعة تنفيذ الصفقات العمومية !
-      {% endblock %}
-    </title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="Construction Company Website Template" name="keywords" />
-    <meta content="Construction Company Website Template" name="description" />
+	<head>
+		<meta charset="utf-8"/>
+		<title>
+			{% block title %}
+				متابعة تنفيذ الصفقات العمومية !
+			{% endblock %}
+		</title>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+		<meta content="Construction Company Website Template" name="keywords"/>
+		<meta content="Construction Company Website Template" name="description"/>
 
-    {% block stylesheets %}
-      <!-- Favicon -->
-      <link href="{{ asset('build/img/favicon.ico') }}" rel="icon" />
+		{% block stylesheets %}
+			<!-- Favicon -->
+			<link
+			href="{{ asset('build/img/favicon.ico') }}" rel="icon"/>
 
-      <!-- Google Font -->
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-      <!-- CSS Libraries -->
-      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
-      {{ encore_entry_link_tags('app') }}
-    {% endblock %}
-  </head>
+			<!-- Google Font -->
+			<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+			<!-- CSS Libraries -->
+			<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"/>
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"/>
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+	</head>
 
-  <body>
-    <div class="wrapper">
-      <!-- Top Bar Start -->
-      <div class="top-bar">
-        <div class="container-fluid">
-          <div class="row align-items-center">
-            <div class="col-lg-12 col-md-19">
-              <div class="logo">
-                <a href="index.html">
-                  <h1>متابعة تنفيذ الصفقات العمومية</h1>
-                  <!-- <img src="{{ asset('build/img/logo.jpg') }}" alt="Logo"> -->
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Top Bar End -->
+	<body>
+		<div
+			class="wrapper">
+			<!-- Top Bar Start -->
+			<div class="top-bar">
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<div class="col-lg-12 col-md-19">
+							<div class="logo">
+								<a href="index.html">
+									<h1>متابعة تنفيذ الصفقات العمومية</h1>
+									<!-- <img src="{{ asset('build/img/logo.jpg') }}" alt="Logo"> -->
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Top Bar End -->
 
-      <!-- Nav Bar Start -->
-      <div class="nav-bar">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-            <a href="#" class="navbar-brand">القائمة</a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button>
+			<!-- Nav Bar Start -->
+			<div class="nav-bar">
+				<div class="container-fluid">
+					<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+						<a href="#" class="navbar-brand">القائمة</a>
+						<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+							<span class="navbar-toggler-icon"></span>
+						</button>
 
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-              <div class="navbar-nav mr-auto">
-                <a href="{{ path('app_default') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_default' %}{% endif %}">الاستقبال</a>
-                {% if is_granted('ROLE_ADMIN') %}
-                  <a href="{{ path('admin') }}" class="nav-item nav-link {% if app.request.get('_route') == 'admin' %}{% endif %}">إدارة</a>
-                {% endif %}
+						<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+							<div class="navbar-nav mr-auto">
+								<a href="{{ path('app_default') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_default' %}{% endif %}">الاستقبال</a>
+								{% if is_granted('ROLE_ADMIN') %}
+									<a href="{{ path('admin') }}" class="nav-item nav-link {% if app.request.get('_route') == 'admin' %}{% endif %}">إدارة</a>
+								{% endif %}
 
-                <div class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle {% if app.request.get('_route') == 'app_juridique' or app.request.get('_route') == 'app_essai' %}{% endif %}" data-toggle="dropdown">مستجدات</a>
-                  <div class="dropdown-menu">
-                    <a href="{{ path('app_juridique') }}" class="dropdown-item">الإطار القانوني</a>
-                    <a href="{{ path('app_essai') }}" class="dropdown-item">تجارب نموذجية</a>
-                  </div>
-                </div>
-                <div class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle {% if app.request.get('_route') == 'app_administrate' or app.request.get('_route') == 'app_danger' or app.request.get('_route') == 'app_temps' or app.request.get('_route') == 'app_technologie' or app.request.get('_route') == 'app_login' %}{% endif %}" data-toggle="dropdown">المشترى العمومي</a>
-                  <div class="dropdown-menu">
-                    {% if app.user %}
-                      <a href="{{ path('app_administrate') }}" class="dropdown-item">إدارة المشاريع</a>
-                      <a href="{{ path('app_danger') }}" class="dropdown-item">إدارة المخاطر</a>
-                      <a href="{{ path('app_temps') }}" class="dropdown-item">إدارة الوقت</a>
-                      <a href="{{ path('app_technologie') }}" class="dropdown-item">استخدام التكنولوجيا الحديثة</a>
-                    {% else %}
-                      <a href="{{ path('app_login') }}" class="dropdown-item">تسجيل الدخول</a>
-                    {% endif %}
-                  </div>
-                </div>
-                <a href="{{ path('app_espace') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_espace' %}{% endif %}">فضاء المواطن</a>
-                <a href="{{ path('app_suivit_index') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_suivit_index' %}{% endif %}">متابعة تنفيذ الصفقات العمومية</a>
+								<div class="nav-item dropdown">
+									<a href="#" class="nav-link dropdown-toggle {% if app.request.get('_route') == 'app_juridique' or app.request.get('_route') == 'app_essai' %}{% endif %}" data-toggle="dropdown">مستجدات</a>
+									<div class="dropdown-menu">
+										<a href="{{ path('app_juridique') }}" class="dropdown-item">الإطار القانوني</a>
+										<a href="{{ path('app_essai') }}" class="dropdown-item">تجارب نموذجية</a>
+									</div>
+								</div>
+								{% if app.user %}
+									<div class="nav-item dropdown">
+										<a href="#" class="nav-link dropdown-toggle {% if app.request.get('_route') == 'app_administrate' or app.request.get('_route') == 'app_danger' or app.request.get('_route') == 'app_temps' or app.request.get('_route') == 'app_technologie' or app.request.get('_route') == 'app_login' %}{% endif %}" data-toggle="dropdown">المشترى العمومي</a>
+										<div class="dropdown-menu">
+											<a href="{{ path('app_administrate') }}" class="dropdown-item">إدارة المشاريع</a>
+											<a href="{{ path('app_danger') }}" class="dropdown-item">إدارة المخاطر</a>
+											<a href="{{ path('app_temps') }}" class="dropdown-item">إدارة الوقت</a>
+											<a href="{{ path('app_technologie') }}" class="dropdown-item">استخدام التكنولوجيا الحديثة</a>
+										</div>
+									</div>
+								{% endif %}
+								<a href="{{ path('app_espace') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_espace' %}{% endif %}">فضاء المواطن</a>
+								<a href="{{ path('app_suivit_index') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_suivit_index' %}{% endif %}">متابعة تنفيذ الصفقات العمومية</a>
 
-                <a href="{{ path('app_contact_new') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_contact_new' %}{% endif %}">اتصل بنا</a>
-              </div>
-              <div class="ml-auto">
-                <a class="btn" href="#"></a>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </div>
-      <!-- Nav Bar End -->
-      {% for message in app.flashes('success') %}
-        <div class="alert alert-success">{{ message }}</div>
-      {% endfor %}
-      {% block body %}
-        {% for message in app.flashes('error') %}
-          <div class="alert alert-danger">{{ message }}</div>
-        {% endfor %}
-      {% endblock %}
+								<a href="{{ path('app_contact_new') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_contact_new' %}{% endif %}">اتصل بنا</a>
 
-      {% block javascripts %}
-        <script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script>
-        <script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js') }}"></script>
-        {{ encore_entry_script_tags('app') }}
-      {% endblock %}
-      <!-- JavaScript Libraries -->
-    </div>
-  </body>
+								{% if app.user %}
+									<a href="{{ path('app_logout') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_logout' %}{% endif %}">تسجيل الخروج</a>
+
+								{% else %}
+									<a href="{{ path('app_login') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_login' %}{% endif %}">تسجيل الدخول</a>
+								{% endif %}
+
+							</div>
+							<div class="ml-auto">
+								<a class="btn" href="#"></a>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</div>
+			<!-- Nav Bar End -->
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success">{{ message }}</div>
+			{% endfor %}
+			{% block body %}
+				{% for message in app.flashes('error') %}
+					<div class="alert alert-danger">{{ message }}</div>
+				{% endfor %}
+			{% endblock %}
+
+			{% block javascripts %}
+				<script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script>
+				<script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js') }}"></script>
+				{{ encore_entry_script_tags('app') }}
+			{% endblock %}
+			<!-- JavaScript Libraries -->
+		</div>
+	</body>
 </html>
