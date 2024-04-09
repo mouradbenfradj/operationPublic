@@ -79,9 +79,9 @@
 											<a href="{{ path('app_technologie') }}" class="dropdown-item">استخدام التكنولوجيا الحديثة</a>
 										</div>
 									</div>
-								{% endif %}
+							
 								<a href="{{ path('app_espace') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_espace' %}{% endif %}">فضاء المواطن</a>
-								<a href="{{ path('app_suivit_index') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_suivit_index' %}{% endif %}">متابعة تنفيذ الصفقات العمومية</a>
+								{% endif %}	<a href="{{ path('app_suivit_index') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_suivit_index' %}{% endif %}">متابعة تنفيذ الصفقات العمومية</a>
 
 								<a href="{{ path('app_contact_new') }}" class="nav-item nav-link {% if app.request.get('_route') == 'app_contact_new' %}{% endif %}">اتصل بنا</a>
 
